@@ -1,0 +1,120 @@
+STRINGS:
+concatenation = a+b with 'a' and 'b' both strings will return a string with the two strings concatenated
+
+
+LISTS:
+Last element has value -1. Going back the number increases in negative
+FUNCTIONS:
+Pure function return something without changing its arguments value
+*args as parameters enables me to pass an arbitrary number of arguments accessible as the tuple 'args'
+**kwargs allows to handle named args that have not been defined in advance. It is a dictionary
+- 'string'.capitalize('string') = dot notation. Converts only the first char of a string to upper case, the rest to lower case
+- 'string'.find('char/sequence/number') = Finds the argument in a string and return the index (lowest one if multiple instances). Return -1 if the argument given is not in the string
+- len('list') = returns the length
+- 'list'.append('string') = appends the string at the end of the list
+- 'list'.insert('index', 'string') = inserts the string into the list at the specified position
+- 'list'.pop('index') = removes the element found at poaition 'index' from 'list' and returns it
+- 'dictionary'.get('key', 'value') = returns the value of the key (no need to specify 'value') or 'value' if 'key' is not in the dictionary
+- 'set'.add('value') = adds 'value' to 'set'
+- 'set'.remove('value') = removes 'value' from 'set'
+- map('function', 'iterable') = returns a new iterable (lists) with 'function' applied to the argument of the first 'iterable'
+- filter('lambda func', 'iterable') = filters 'iterable' according to condition in 'lambda func'
+
+
+DICTIONARIES:
+- keys have to be immutable elements (strings, int, bool, float)
+
+
+TUPLES:
+like lists but immutable and defined with () or just a come between the elements
+- unpacking = create more variables on the same line to assing each element of the tuple to a variable respectively
+- * = if * preceds a variable it takes all the elements of the tuple not assigned to the other variables
+
+
+SETS
+{} and unordered -> cannot be indexed
+Do not contain duplicates
+| = union between sets: third set with all items from either without repetitions
+& = intersection: third set with items that were in both the original sets
+- = difference: third set with items from the first without items in both
+^ = symmetric difference: third set with items from both excluding the same ones
+
+
+GENERATORS:
+Iterables that can be looped and are infinte. Called with 'yield' statement instead of 'return' in a function
+
+
+CLASSES:
+__init__ method = it's a function with argument 'self' as first. Doesn't need to be included when the methods are called
+Attributes of a class are accesed via 'class'.'attribute'
+A class (subclass) can inherit from another (superclass) putting the superclass name into parenthesis when the subclass is created. Same attirbutes and methods are overwritten
+super().'method' = calss the method of the superclass even if defined in the subclass
+MAGIC METHODS: 'variable 1'.__'operation'__('variable 2')
+__sub__ for -
+__mul__ for *
+__truediv__ for /
+__floordiv__ for //
+__mod__ for %
+__pow__ for **
+__and__ for &
+__xor__ for ^
+__or__ for |
+__add__ for +
+__lt__ for <
+__le__ for <=
+__eq__ for ==
+__ne__ for !=
+__gt__ for >
+__ge__ for >=
+__len__ for len()
+__getitem__ for indexing
+__setitem__ for assigning to indexed values
+__delitem__ for deleting indexed values
+__iter__ for iteration over objects (e.g., in for loops)
+__contains__ for in
+and 'r' cna be added in front of the operation name method variables are inverted
+@classmethod = written before the definition of a class method to make it work on the class itself and not on an instance of it. The method thakes as first argument 'cls'
+__'variable' = strongly private. To use -> _'class'__'variable'
+_'variable' = weakly private
+@staticmethod = same as classmethod, but doesn't take any additional argument
+@property = put before a method. When the instance attribute with the same name as the method is accessed, the method will be called instead. 
+@'method'.setter/getter = sets/gets the corresponding property's value
+
+
+EXECPTIONS:
+ImportError, IndexError, NameError, SyntaxError, TypeError, ValueError
+
+- try/except: code indented below try is executed, but if it contains error then code indented below except is executed. If it doesn't only code indented below try is executed. They want :. 1 try can have more except. After except the error type has to be written -> except 'typeError'. If nothing is written, except will catch all the errors
+- finally: executes after try/except no matter what. It wants : and indentation
+- else: the code within is only executed if no error occurs in the try statement
+- raise 'execption': raises an execption of the type specified. It can be given a string with details -> raise 'exepction'('string')
+
+
+FUNCTIONS:
+Multiple values can be returned on the same line of code. Need to be separated by comas
+
+
+
+MATPLOTLIB:
+- xticks(ha/va='string',rotation='number', fontsize='number'): wants name of variables inside
+	ha/va -> horizontal/vertical alignment left/right/top/bottom
+	rotation -> int for label rotation
+	fontsize -> int for font size
+	
+- fig = plt.figure(figsize, tight_layout, facecolor):
+	figsize = tuple with sizes
+	tight_layout = boolean to adjust the spacing of plots for an automated best fit
+	facecolor = 'color' -> sets the background color
+	
+- fig.suptitle('string', fontsize='number', x='number', y='number'): adds a centered title at the top of all subplots, with font size and spacing parameters
+	'string' -> title for the subplots 
+	fontsize -> font size number
+	x, y -> position of the tile
+
+- fig.supxlabel/supylabel('string'): adds an x/ylabel to all plots
+
+- fig.subplots_adjust(hspace, wspace): manually adjusts spacing around plots
+	h/wspace -> float
+	
+bar(color='string')!!!!!!!!!!!!!
+plt.annotate(backgroundcolor='color',arrowpropos,xytext)

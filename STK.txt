@@ -1,0 +1,171 @@
+STK LEVEL 2 TUTORIALS
+https://courses.ansys.com/index.php/courses/intro-to-orbit-types/lessons/common-orbit-types-lesson-1/
+
+
+INTRODUCTION TO THE PRO CAPABILITIES:
+Use terrain imagery to influence analysis and make them more realistic. Put terrain in local areas and visualize it. GPS tracking of device blocked by mountain if terrain used, otherwise not (not realistic)
+- Only .pdtt files can be used both analitically and visually (on 3D graphics)
+- AzElMask range up to 50 km only to visualize what happens up to 50 km from the receiver, but the communication is established with the satellites at any height. This tells us when the receiver is visibile from the satellite
+- Chain between constellation and receiver bc we consider any satellite of the constellation, we don't care which one gains access
+- Scenario -> basic -> terrain -> uncheck use terrain server = by turning off streaming terrain, you are simulating what you'd see in a setting that doesn't have an Internet connection
+- A basic.bmp map is the default without internet connection
+- The Create Color Elevation Imagery utility allows you to create images from terrain data that show elevation data colored by height
+- The Az-El Mask constraint works by first extending a number of rays in directions of constant azimuth outwards from your Facility, Place, or Target object. Information for where any terrain obstructions occur is then stored for each ray. Then, when computing access between this object of interest and another object, the obstruction information from the two rays bounding the line between the two is used to compute an interpolated solution. The Az-El Mask constraint therefore requires a larger computation time up-front to create the mask but can then reference that solution and use interpolation to determine visibility over the entire analysis period without additional computations
+- The Terrain Mask constraint, on the other hand, works by determining instantaneous visibility by detecting intersections of the instantaneous line of sight with the terrain surface. Therefore, compared to the Az-El Mask the Terrain Mask doesn’t require a large up-front computation but instead conducts computations throughout the entire analysis period
+- For fixed ground to air, it is generally more efficient to utilize the Az-El Mask constraint when computing visibility between a fixed object and a moving object or objects. In this case, an Az-El Mask is generated up-front at the fixed object's location which is then used to determine visibility to the moving object over time
+- For air to air only the Terrain Mask constraint is available since you need a Facility, Place, or Target object to utilize the Az-El Mask constraint
+- Fixed ground to fixed gorund: the best option here is to use the Terrain Mask because you only need to look along a single direction connecting the two fixed locations. If using Az-El Mask, a full 360 deg. mask would need to be computed up-front
+- Fixed ground to coverage grid: if you want to consider terrain masking at each grid point in a coverage grid it is often much faster to use Terrain Mask. If using Az-El Mask it will compute the up-front mask for every grid point in your coverage definition which can be very expensive
+
+CUSTOMIZE ANALYSIS WITH ANALYSIS WORKBENCH:
+More detailed analysis by creating vectors, angles and reference systems. Know when it is optimal to perform some analysis by merging time intervals with different conditions
+- Boresight angle: angle between vector pointing at the target and vector pointing at the Sun
+- Analysis Workbench: elements with a lock cannot be edited
+- Calculation Tool can be opened from the calculation tab in the Analysis Workbench
+- Time tool of the Analysis Workbench allows to fuse time intervals
+
+COMPUTE COVERAGE OVER REGIONS:
+Analyse coverage of an area of ground or space. Coverage functionality to analyse Earth by sensors. Quality and quantity of coverage analysed
+- Repeating ground track sat: useful to analyse same ground in different conditions. The ground track can be repeated every day or interweave from day to day before repating
+- Sun synchronous sat: nodes maintain constant local mean solar times
+- Point granularity 6° set on WGS84 as default for coverage
+- Sats have 360° FoV -> coverage assigned only to sensors
+- 'Compute Accesses in Parallel' uses all the available cores of the PC -> faster
+- FoMs specify the method by which the quality of coverage is measured
+- FoM 'simple coverage' measures weather or not each point is accessible by any of the assigend assets -> coloured areas are seen at least once, black areas are never seen
+- Targets can be assigned to grids to make constraints
+- Asset = object that provides coverage. Assigned in the coverage properties
+
+INTRODUCTION TO THE AzEl MASK TOOL AND VOLUMETRICS:
+AzEl Mask tool usage to determine how Earth, terrain and facilities obstruct communications
+- If you select a window and then 'tile vertically' that window goes on the left
+- clock angle = horizontal angle. Measured clockwise when looking in the direction of the positive z axis
+- Facility ref system has +Z towards the centre of the Earth
+- Give volume to objects you put visually for access purposes otherwise they're not considered and the model it's not realistic
+- Analyis Workbench: Spatial Analyis tool creates calculations and conditions that depend on locations in 3D space which are, in turn, provided by user-definable volume grids
+- 'Constrain active grid points within Area Target': consider grid points inside the Area Target and not the overflowing points outisde
+- Azimuth angle = angolo sul piano orizzontale (equatore) tra proiezione nord e vettore to target
+- why the one sec interval = maybe cuz we just want to know the coverage in general
+
+PERFORM TRADE STUDIES WITH ANALYZER:
+Determine how orbital parameters affect % of coverage of Earth from a sensor
+- orbit wizard -> orbit designer = play with orbits
+- 'Analyzer' icon not available = Edit menu -> preferences -> UI plugins -> highlight 'Analyzer' and click reset toolbar
+- With analyzer you can vary parameters and make analysis according to their variance
+- 'Parametric study tool' in Analyzer to run models changing an input variables
+- 'Data explorer' is a tool to display data collected from STK
+- Use 'carpet plot' in Analyzer to display data dependent on two variables
+
+INTRODUCTION TO COMMUNICATIONS:
+Simulate how the terrain influences the communications analyzing the link budget between two antennas (ground, space, air). 
+RX and TX objects, STK antenna models, radiofrequency environment properties, simple and detailed link budgets
+- Local Database -> data updated up to the downloaded databse
+- AGI database -> always up to date
+- EIRP (Effective Isotropic Radiated Power) = maximum amount of power that can be radiated from an antenna given gain and TX power
+- receiver antenna is steerable -> sensor object in STK
+- half power sensor patterns = visually model parabolic antennas
+- target for the sensor can be the satellite if the boresight TX is on the CoG of it
+- 'Target Times' in sensor properties tells me when I access the sat without computing access
+- Receiver boresights wherever the sensor it is attached to boresights
+- 'Auto Track' links the receiver freq to the transmitter one. Includes doppler shifts
+- BER (Bit Error Rate) = calculated by dividing the quantity of bits received in error by the total number of bits transmitted within the same time period. A result of 10(-9) is generally considered an acceptable bit error rate for telecommunications, while 10(-13) is a more appropriate minimum BER for data transmission
+
+INTRODUCTION TO RADAR:
+How radar settings affect its ability to track different sized signals (cross section, pulse repetition frequency, gain, pulse integration).
+Radar cross section, Monostatic Radars and their settings, Radar Data Providers.
+- Help -> license viewer = tells you which license the tool is using
+- Aircraft -> set all button to set all the WPs parameters alltogether
+- Aircraft -> RF -> radar cross section -> uncheck 'inherit' or it'll inherit from the scenario object
+- PRF = # of pulses in a specific time of unit
+- Aircraft -> Radar cross section -> RCS value- -> the smaller it is the smaller the a/c i'm simulating. A negative value could represent a bird or a stealth aircraft
+- A typical airport surveillance radar's nominal range is 60 miles and the elevation angle of the beam can track from 0 to 30 degrees
+
+INTEGRATING STK WITH MATLAB:
+Integration of STK starting it from MATLAB
+- Unlike connect we don't send commands from inside of STK -> Integration license needed
+- Used to automate, extend or visualise tasks and analysis
+- Define app and root and you talk to STK
+- ctrl + Ent = run section in MATLAB
+- Deafault object in STK is located at (0,0)
+- Connect uses meters when you start using it. Units can be changed
+
+INTEGRATING STK WITH PYTHON:
+How to automate processes integrating STK and PYTHON using the Jupiter notebook
+- Jupiter notebook is accessible from inside STK from the View menu
+- Anaconda & API file needed
+- Python interpreter path has to be set to the python version installed on PC. If it's not go to Edit -> Preferences -> Integrated Jupyter Notebook for Python -> set the interpreter path so it's at a scenario level
+- folder set to the folder with python scripts
+- Enable 'create a new script on open'
+- 2nd section connects to the STK instance used in case there are more open
+- Disable read only in the properties of the python file copied from the install folder
+- If the orbit of the sat is not shown it's because the parameters have not been defined. Can do it with the connect commands
+
+INTEGRATING STK WITH EXCEL:
+Task integration with Excel to create, drive and extract data from an STK scenario.
+- STK programming help -> select the right technology -> decision tree
+- Support page in the AGI Ansys website -> download STK Excel Add-in a nd install it
+- Connect Excel and STK
+- In the Excel code page type the STK commands (global variables at the top)
+- Variable notUsed because Visual Basic always expects something in return
+- Name cells with the proper name cuz the code will look for those names
+- Geodetic Ref frame assigns the object on the WGS84 if I don't have a terrain or on the top of the terrain if I have it
+- Connect defaults semi-major axis to meter, STK to km
+- Import data from STK using the Add-in page
+- studia la sintassi!!
+
+ADD FIDELITY WITH STK PRO:
+More sophisticated modelling thorugh advanced access constraints, sensor shapes, visibility links, more object tracks and  digital terrain data
+- To have a terrain visually it needs to be converted into a .pdtt file. The .dem extension is only analytical
+- Right click on the terrain under 'Globe Manager' -> toggle extents = shows the extension of the terrain on the map to make sure the place is within the terrain
+- A Chain object enables you to assign objects to the chain and define the order in which the objects are accessed. Access from first to last is needed to have a complete access. Order of objects in basic - definition properties matters
+
+MODEL AIRCRAFT MISSIONS WITH AVIATOR:
+- Need aviator license!
+- Model environment and terrain for analysis
+- Model a/c performance for reality of the simulation
+- Aviator catalog mananger allows me to load and save a/c, airport, navaids, ect. (utilities bar)
+- I can create STK objects directly from the position of elements in the aviator database
+- CoG of a/c is in the middle of fuselage, so if positioned on the runway half of the a/c will be buried in he terrain => altitude offset to runway
+- Relative altitude change = how much altitude to gain from the start of the phase
+- Flight profile by time -> custom report available only for aviator propagated vehicles
+- With Aviator, the aircraft's route is modeled by a sequence of curves parametrized by well-known performance characteristics of aircraft, including cruise airspeed, climb rate, roll rate, and bank angle.
+
+INTRODUCTION TO THE ADVANCED CAT TOOL:
+- Conjunction analysis tool to analyse the eddect of other orbiting objects on mine
+- Used for collision avoidance
+- Two line elements (TLEs) method used for inserting satelittes
+- CAT tool propagates ephemerides of existing objects without adding other
+- Tnagential = x, CrossTrack = y, Normal = z -> axes of the object we are considering
+- Pre-filters opt out satellite according to geometric properties
+- Threshold is the distance within which the threats are considered
+
+DESIGN TRAJECTORIES WITH ASTROGATOR:
+- For high fidelity space manoeuvres
+- Burnout velocity??
+- Launch vehicle default location is Cape Canaveral
+- Mission Control Sequence (MCS) has a programming language that calculates trajectories
+- It is possible to drag and drop sequences in the MCS
+- Repeat count -> # of time necessary to satisfy the stoppting condition before it actually stops
+- Selecting the bullseye icon makes the variable independent
+- Results -> Scaling method of equality constraints = by tolerance, if tolerance has been changed
+- Summary report above the MCS contains data on the selected manoeuvre
+
+GROUND-BASED SSA WITH EOIR:
+- EOIR = Electro-Optical and Infrared Sensors -> can be defined as sensor type
+- SSA = Space SItuational Awareness
+- EOIR plug-in to enable in the top bar
+- EOIR synthetic scene button grey out if sensor not selected
+- Visual magnitude measurements with EOIR -> FAQ on the web
+
+
+USEFUL LINKS
+- Integrating STK with other applications
+- Automating repetitive tasks
+- Extending AGI products
+- Visualize
+- Using Core Libraries
+- Naming conventions
+- Model diagrams
+- STK Excel Add-in
+- Data Providers
+- Aviator Catalog
