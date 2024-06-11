@@ -1,0 +1,282 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PYTHON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+STRINGS:
+- concatenation = a+b with 'a' and 'b' both strings will return a string with the two strings concatenated
+- 's1'.join(['string', 'string']) = concatenates  all the 'string' with 's1' as join point. '' means no space, ' ' means space
+
+
+DICTIONARIES:
+couples of [keys] and values
+- 'dict'['name'] = accesses dictionary key called 'name' to manage its values
+- keys have to be immutable elements (strings, int, bool, float)
+
+LISTS:
+- Last element has value -1. Going back the number increases in negative
+- Created with []
+
+
+FUNCTIONS:
+def 'name' = colon at the end
+Pure function return something without changing its arguments value
+Multiple values can be returned on the same line of code. Need to be separated by comas
+- *args as parameters enables me to pass an arbitrary number of arguments accessible as the tuple 'args'
+- **kwargs allows to handle named args that have not been defined in advance. It is a dictionary
+- range(a, b, c) = list of numbers from 'a' to 'b' (exclusive) of step 'c'
+- 'variable' = 'list'.index('element') = returns the index of element position in list
+- 'str'.split('char') = creates a list with the string split by 'char'. Every element of the list will be what there is before the 'char' (excluded)
+- 'list'/'set'.remove('variable'/'value') = removes 'variable' from 'list' or 'value' from 'set'
+- max('list') = returns the greatest element in the list. If more returns the smallest index
+- 'string'.capitalize('string') = dot notation. Converts only the first char of a string to upper case, the rest to lower case
+- 'string'.find('char/sequence/number') = Finds the argument in a string and return the index (lowest one if multiple instances). Return -1 if the argument given is not in the string
+- len('list'/'string') = returns the length
+- 'list'.append('string') = appends the string at the end of the list
+- 'list'.insert('index', 'string') = inserts the string into the list at the specified position. Not valid for strings, they're immutable
+- 'list'.pop('index') = removes the element found at poaition 'index' from 'list' and returns it
+- 'dictionary'.get('key', 'value') = returns the value of the key (no need to specify 'value') or 'value' if 'key' is not in the dictionary
+- 'set'.add('value') = adds 'value' to 'set'
+- 'set'.remove('value') = removes 'value' from 'set'
+- map('function', 'iterable') = returns a new iterable (lists) with 'function' applied to the argument of the first 'iterable'
+- filter('lambda func', 'iterable') = filters 'iterable' according to condition in 'lambda func'
+
+
+LIST COMPREHENSION:
+- my_list = ['operation' for 'variable' in range() if 'condition'] -> example -> [x for x in range(1,5) if x % 2 == 0] = [2, 4]
+
+
+PHANTOM FUNCTIONS:
+- lambda 'variable': 'operation', 'list' -> example -> filter(lambda x: x < 2, range(0,10)) = [0, 1]
+
+
+BITWISE OPERATIONS:
+- bit() = turns number into its bit form
+- int("0bxxx", 2) = turns a bit into its base 10 number
+- XOR = 1 when either bit is 1, but not both
+- ~ = add one and negates the number
+- Bitmask: Can use a mask bit to turn on/off bits in another number in base 2. With the & operator i check if it's on, with the | operator i turn it on, with the ^ operator I flip the number, << shifts the n(th) position of a bit to do operations on it (<< n-1)
+
+
+CLASSES:
+class 'name' = starts with capitol letter and colon at the end
+Attributes of a class are accesed via 'class'.'attribute'
+an 'r' can be added in front of the operation name method variables are inverted
+- @classmethod = written before the definition of a class method to make it work on the class itself and not on an instance of it. The method thakes as first argument 'cls'
+- @staticmethod = same as classmethod, but doesn't take any additional argument
+- @property = put before a method. When the instance attribute with the same name as the method is accessed, the method will be called instead. 
+- @'method'.setter/getter = sets/gets the corresponding property's value
+- __init__() = function (called method) at the beginning of a class (taking at least self as input) to initialize the objects created. Self is used to refer to the instance object. Doesn't need to be included when the methods are called
+- Intance = using the class created outside of its definition -> class Car(object): ...   my_car = Car()
+- member variable = variable defined inside a class, but outside of any of its methods (functions)
+- Inheritance is the process by which one class takes on the attributes and methods of another = expresses an 'is a' relationship -> class DerivedClass(BaseClass)
+- super(DerivedClass, self).method(arguments) = calls the method of the superclass even if defined in the subclass
+
+MAGIC METHODS: 
+'variable 1'.__'operation'__('variable 2')
+__sub__ for -
+__mul__ for *
+__truediv__ for /
+__floordiv__ for //
+__mod__ for %
+__pow__ for **
+__and__ for &
+__xor__ for ^
+__or__ for |
+__add__ for +
+__lt__ for <
+__le__ for <=
+__eq__ for ==
+__ne__ for !=
+__gt__ for >
+__ge__ for >=
+__len__ for len()
+__getitem__ for indexing
+__setitem__ for assigning to indexed values
+__delitem__ for deleting indexed values
+__iter__ for iteration over objects (e.g., in for loops)
+__contains__ for in
+__'variable' = strongly private. To use -> _'class'__'variable'
+_'variable' = weakly private
+
+
+FILES:
+- 'variable' = open("filename", "mode") = opens a file in 'mode'-> w = write, r+ = read and write, r = read
+- 'variable'.close() = closes the file
+- 'variable'.write('data to write') = writes in the file
+- 'variable'.read() = reads the file (need to print, open the file with "r" and close the file to actually read what was inside)
+- 'variable'.readline() = reads one line at a time successively
+- No need to close file if -> with open("filename", "mode") as 'variable': do stuff (indented)
+- 'variable'.closed = checks if file is close returning True or False
+
+
+TUPLES:
+like lists but immutable and defined with () or just a come between the elements
+- unpacking = create more variables on the same line to assing each element of the tuple to a variable respectively
+- * = if * preceds a variable it takes all the elements of the tuple not assigned to the other variables
+
+
+SETS:
+{} and unordered -> cannot be indexed
+Do not contain duplicates
+| = union between sets: third set with all items from either without repetitions
+& = intersection: third set with items that were in both the original sets
+- = difference: third set with items from the first without items in both
+^ = symmetric difference: third set with items from both excluding the same ones
+
+
+GENERATORS:
+- Iterables that can be looped and are infinte. Called with 'yield' statement instead of 'return' in a function
+
+
+EXECPTIONS:
+ImportError, IndexError, NameError, SyntaxError, TypeError, ValueError
+- try/except: code indented below try is executed, but if it contains error then code indented below except is executed. If it doesn't only code indented below try is executed. They want :. 1 try can have more except. After except the error type has to be written -> except 'typeError'. If nothing is written, except will catch all the errors
+- finally: executes after try/except no matter what. It wants : and indentation
+- else: the code within is only executed if no error occurs in the try statement
+- raise 'execption': raises an execption of the type specified. It can be given a string with details -> raise 'exepction'('string')
+
+
+NUMPY for LINEAR ALGEBRA:
+- Dot product: a*b = |a|*|b|*cos(theta)
+- Matrix dimension is said m x n, with m rows, n columns 
+- Matrix sum = sum corresponding values
+- Matrix moltplication = dot product between each row of matrix 1 and each column of matrix 2. Result is a matrix with #rows equal to 1st and #columns equal to 2nd
+Singular matrices -> cannot be inverted
+- np.array(['array','array',...]) = initialise vector/matrix. One array creates a vector, n arrays create a matrix with n rows
+- np.column_stack(('array','array',...)) = creates a matrix with 'array' as columns
+- 'matrix'.shape = tuple with matrix dimension
+- 'matrix'[index_rows, index_columns] = accesses element in matrix. Start from 0. Indexing works as for lists
+- '*', '+' = multiply with a scalar or add matrices
+- np.dot('vector1','vector2') = dot product between vector 1 and vector 2
+- np.matmul('matrix1','matrix2') or 'matrix1'@'matrix2' = matrix multiplication
+- 'matrix1'*'matrix2' = elementwise matrix multiplication
+- np.eye('dim') = creates identity matrix of dimension 'dim'
+- np.zeros('tuple') = creates a vector/matrix of zeros of dimension 'tuple'. One number gives a vector 1xn
+- 'matrix'.T = creates transposed matrix
+LINALG SUBLIBRARY
+- np.linalg.norm('vector') = norm of a vector
+- np.linalg.inv('matrix') = find inverse of square 'matrix' if it exists
+- ('unknowns') = np.linalg.solve('A', 'b') -> solves the linear system Ax = base
+- np.size('array') = returns the number of elements in the array
+- np.concatenate(('array', 'array'), axis=None) = concatenates arrays in the same row
+
+JUPYTER NOTEBOOK:
+web-based environment for writing code and displaying results. Cells to write code
+
+
+PANDAS:
+library specifically designed for data analysis. Imported as 'pd'
+
+
+
+MATPLOTLIB:
+Python library that are specifically designed to make data visualizations with the module 'pyploy' as 'plt'
+- plt.plot(x, y, color, linewidth, linestyle, label) = line chart, shows continuous change, often used to measure change over time
+	-- 'color' = can be single-letter color code (8 basic colors), full string color (1000+ recognized colors), hexadecimal code (any web color)
+	-- 'linewidth' = number for the width of the line, 
+	-- 'linestyle' = 'dotted', 'dashed', 'solid', 
+	-- 'label' = string used as information source for the legend
+	
+- plt.subplot(num_rows, num_columns, index) = allows us to position plots in a grid
+	-- num_rows = number of rows in the grid
+	-- num_columns = number of columns in the grid
+	-- index =  the numbered position of the subplot, reading the grid from left-to-right, top-to-bottom
+	
+- plt.suptitle() =  to add a single title at the top of all the subplots
+- plt.scatter(x, y, color, alpha) = scatter plot, uses position to show the relationship, or correlation, between two numeric values
+	-- x = x data
+	-- y = y data
+	-- 'color' = data color
+	-- alpha = semi-transparent points for better visualization (heatmap). The lower the more transparent
+
+- plt.bar(x, height, width, align, color) = bar chart, uses bar height to compare a measure between categorical variables
+	-- x = data to visualize for each bar
+	-- height = data determining the height of the bars
+	-- width = width of each bar
+	-- align = 'center' or 'edge' to align each bar on the x-axis
+	-- color = string for the color or set of color
+	
+- plt.errorbar(x, y, x/yerr, color, fmt) = visually represents uncertainty by adding error bars to a graph
+	-- x = data to visualize for each bar
+	-- y = height from plt.bar()
+	-- x/yerr = data determining errors
+	-- 'fmt' = marker
+	-- 'color' = color of the error bar
+	
+- plt.pie(x, labels=, startangle=, colors=) = pie chart,  shows us the breakdown of a whole into its parts. Work best for breakdowns of 2-8 parts, and they are only a good choice when the takeaway doesn’t have to be too granular.
+	-- x = data shown as pieces of the pie. The function adds up all the x values to compare part and whole and auto-generate the pieces of the pie.
+	-- labels = data used to label each section of the pie chart
+	-- startangle = number representing the rotation of the pie chart, adjusted to improve readability
+	-- colors = an array of colors the chart will cycle through. If blank, defaults to matplotlib’s default 10-color “Tableau” palette
+
+- plt.hist(x, bins, range=, color=) = histogram, shows how one kind of data is distributed
+	-- x = data being distributed. Not aggregated value
+	-- bins = number indicating how many bins to make or where the edges of the bins are (as a list of values). The higher the more narrow bars are
+	-- range = tuple indicating lower and upper range of the bins. If unspecified, set to the min and max values for x
+	-- 'color' = color of bars
+	
+- plt.title('string') = add 'string' as title
+
+- plt.legend(bbox_to_anchor = (xcoord, ycoord)) = add legend using the lebels in the plot. Coordinate are betwenn 0 and 1, meaning left/right for x and bottom/top for y
+- plt.x/ylabel() = add axes label
+- plt.tick_params(axis='axis', direction='dir', color='color', labelsize='size', labelcolor='color', labelrotation=angle) = changes rotation of the tick labels. Can also create gridlines. 
+	-- 'dir' = in/out, 
+	-- 'color' for the tickmarks, 
+	-- 'labelcolor' for the color of label
+	
+- plt.xticks(ha/va='string', rotation='number', fontsize='number') = change orientation of labels
+	-- ha/va = horizontal/vertical alignment left/right/top/bottom
+	-- rotation = int for label rotation
+	-- fontsize = int for font size
+
+- plt.x/yscale() = adjust axes
+
+- plt.show() = print graph
+
+- plt.clf() = clear figure
+
+- fig = plt.figure(figsize, tight_layout, facecolor) = change the whole grid
+	-- figsize = tuple with sizes
+	-- tight_layout = boolean to adjust the spacing of plots for an automated best fit
+	-- facecolor = 'color' -> sets the background color
+	
+	-- fig.suptitle('string', fontsize='number', x='number', y='number') = adds a centered title at the top of all subplots, with font size and spacing parameters
+		-- 'string' = title for the subplots 
+		-- fontsize = font size number
+		-- x, y = position of the tile
+	
+	-- fig.supxlabel/supylabel('string') = adds an x/ylabel to all plots
+	
+	-- fig.subplots_adjust(hspace, wspace): manually adjusts spacing around plots
+		-- h/wspace = float
+		
+- plt.savefig('string', dpi=number, bbox_inches='tight') = exports a chart with 'string' as name. Defaults as .png, but accepts .jpeg, .pdf, .svg. Dpi gives us the resolution, bbox_inches='tight' ensures that our legend, tick labels, and axes aren’t cut off
+- plt.axvline(x, ymin, ymax, linewidth, dashes, color) = vertical AB line
+	-- x = where to position the line along the x-axis
+	-- ymin =  how close to the bottom of the graph the line starts. Between 0 and 1
+	-- ymax =  how close to the bottom of the graph the line ends. Between 0 and 1
+	-- linewidth = line width of the AB line
+	-- dashes = dash pattern given as tuple (line_length, space_length)
+	-- 'color' = string of color of the AB line
+	
+- plt.axhline(y, xmin, xmax, linewidth, dashes, color) = horizontal AB line. Works the same as axvline
+
+- plt.annotate(text, xy, color, backgroundcolor, arrowpropos=dict(), xytext) = allows us to position and format text on a graph
+	-- text = string of annotation text
+	-- xy = tuple for text coord
+	-- color = color of text and arrow
+	-- backgroundcolor = color of annotation background
+	-- arrowpropos = dictionary defined as dict(arrowstyle='shape arrow', color='string') to style an arrow from the annotation to a point
+	-- xytext = tuple to reposition the text, if an arrow is used. Arrowhead at xy
+
+- 'variable' = plt.figure().add_subplot(projection='3d') -> creates a 3D plot
+	-- 'variable'.set_x/y/zlabel('string'): labels the correspective axis
+	-- 'variable'.plot_surface('x','y','z'): creates a surface plot
+	
+SEABORN:
+Python library that are specifically designed to make data visualizations imported as 'sns'
+
+SCIPY
+- from scipy.spatial.transform import Rotation = rotation matrix
+	- Rotation.from_euler('axis tern', ['angle', 'angle', 'angle']):
+		-- 'axis tern' = three characters identifiyng the axes around which the rotation is performed. Capital letters
+		-- 'angle' = angle of rotation in rad or deg
+		
+	- 'Variable'.as_matrix() = rapresents Variable as rotation matrix
